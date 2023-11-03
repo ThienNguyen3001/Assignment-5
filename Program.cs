@@ -1,4 +1,3 @@
-﻿using Microsoft.SqlServer.Server;
 using System;
 using System.Linq;
 
@@ -188,6 +187,26 @@ namespace BaiTap
 
             }
         }
+        static bool LaDoiXung(int[] a, int n)
+        {
+            for (int i = 0; i < n/2; i++)
+            {
+                if (a[i] != a[n - i - 1])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        static void BT9(int[] a, int n)
+        {
+            if (LaDoiXung(a,n))
+            {
+                Console.WriteLine("Mang a la mang doi xung");
+                return;
+            }
+            Console.WriteLine("Mang a khong la mang doi xung");
+        }
         static void XuatMang(int[] a, int n)
         {
             foreach (int i in a)
@@ -202,9 +221,9 @@ namespace BaiTap
             int[] a;
             int n;
 
-            //NhapMang(out a, out n);
+            NhapMang(out a, out n);
 
-            BT8();
+            BT9(a,n);
 
             //XuatMang(a, n);
         }
