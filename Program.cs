@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 
 namespace BaiTap
@@ -207,6 +207,59 @@ namespace BaiTap
             }
             Console.WriteLine("Mang a khong la mang doi xung");
         }
+        static void BT10(int[] a , int n)
+        {
+            int x, y;
+            Console.WriteLine("Nhap lan luot 2 so x , y (y > x): ");
+            x = int.Parse(Console.ReadLine());
+            y = int.Parse(Console.ReadLine());
+
+            int dem = 0;
+            for(int i = 0; i < n; i++)
+            {
+                if (a[i] <= y && a[i] >= x)
+                {
+                    dem++;
+                    Console.WriteLine($"So {a[i]} o vi tri {i}");
+                }
+            }
+            Console.WriteLine($"Co {dem} so trong doan tu [{x},{y}]");
+        }
+        static void BT11()
+        {
+            int[] can = { 1, 2, 4, 8, 16, 32, 64, 128, 256 };
+
+            int m;
+            Console.WriteLine("Nhap trong luong m (m < 512) : ");
+            m = int.Parse(Console.ReadLine());
+
+
+        }
+        static void BT12()
+        {
+            Console.WriteLine("Nhap so hang dau tien cua cap so cong : "); 
+            int u1 = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Nhap cong sai cua cap so cong : ");
+            int d = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Nhap so luong phan tu can in : ");
+            int n = int.Parse(Console.ReadLine());
+
+            int[] u = new int[n];
+            u[0] = u1;
+
+            for(int i = 1; i < n; i++)
+            {
+                u[i] = u[i-1] + d;
+            }
+            Console.WriteLine("Day cap so cong la : ");
+            foreach(int i in u)
+            {
+                Console.Write($"{i} ");
+            }
+
+        }
         static void XuatMang(int[] a, int n)
         {
             foreach (int i in a)
@@ -221,10 +274,10 @@ namespace BaiTap
             int[] a;
             int n;
 
-            NhapMang(out a, out n);
+            //NhapMang(out a, out n);
 
-            BT9(a,n);
-
+            //Chưa làm BT11();
+            BT12();
             //XuatMang(a, n);
         }
     }
