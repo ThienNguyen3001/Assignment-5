@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Linq;
 
 namespace BaiTap
@@ -260,6 +261,71 @@ namespace BaiTap
             }
 
         }
+        static bool LaMangCon(int[] a, int[] b)
+        {
+            foreach(int i in a)
+            {
+                bool ok = false;
+                foreach(int j in b)
+                {
+                    if(j == i)
+                    {
+                        ok = true; 
+                        break;
+                    }
+                    if(j != i && ok)
+                    {
+                        ok = false;
+                        break;
+                    }
+                }
+                if (ok == false)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        static void BT13()
+        {
+            int n;
+            int[] a;
+            Console.WriteLine("Nhap vao so luong phan tu mang a : ");
+            n = int.Parse(Console.ReadLine());
+
+            a = new int[n];
+            Console.WriteLine("Nhap vao mang a : ");
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write($"a[{i}] = ");
+                a[i] = int.Parse(Console.ReadLine());
+
+            }
+
+            int m;
+            int[] b;
+            Console.WriteLine("Nhap vao so luong phan tu mang b : ");
+            m = int.Parse(Console.ReadLine());
+
+            b = new int[m];
+            Console.WriteLine("Nhap vao mang b : ");
+            for (int i = 0; i < m; i++)
+            {
+                Console.Write($"b[{i}] = ");
+                b[i] = int.Parse(Console.ReadLine());
+            }
+            if (LaMangCon(a, b))
+            {
+                Console.WriteLine("a la mang con cua b");
+            }
+            else
+            {
+                Console.WriteLine("a khong la mang con cua b");
+
+            }
+        }
+
         static void XuatMang(int[] a, int n)
         {
             foreach (int i in a)
@@ -276,8 +342,8 @@ namespace BaiTap
 
             //NhapMang(out a, out n);
 
-            //Chưa làm BT11();
-            BT12();
+            //Chưa làm BT11() , Bt13();
+            BT13();
             //XuatMang(a, n);
         }
     }
