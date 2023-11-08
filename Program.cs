@@ -234,7 +234,27 @@ namespace BaiTap
             Console.WriteLine("Nhap trong luong m (m < 512) : ");
             m = int.Parse(Console.ReadLine());
 
+            int[] result = new int[1];
 
+            for(int i = can.Length-1; i >= 0; i--)
+            {
+                if (can[i] <= m)
+                {
+                    // Thêm phần tử can[i] vào mảng result có sẵn giá trị 0
+                    Array.Resize(ref result, result.Length + 1);
+                    result[result.Length - 1] = can[i];
+                    //
+
+                    m = m - can[i];
+                }
+            }
+            Console.Write("Cac qua can duoc su dung la : ");
+            foreach(int i in result )
+            {
+                if (i == 0)
+                    continue;
+                Console.Write($"{i}g ");
+            } 
         }
         static void BT12()
         {
@@ -263,30 +283,30 @@ namespace BaiTap
         }
         static bool LaMangCon(int[] a, int[] b)
         {
-            foreach(int i in a)
+            bool check = false;
+            for (int i = 0; i < b.Length; i++)
             {
-                bool ok = false;
-                foreach(int j in b)
+                if (b[i] == a[0])
                 {
-                    if(j == i)
+                    int start = i;
+                    check = true;
+                    for(int j = 0; j < a.Length; j++)
                     {
-                        ok = true; 
-                        break;
+                        if (a[j] != b[start])
+                        {
+                            check = false;
+                            break;
+                        }
+                        start ++;
                     }
-                    if(j != i && ok)
+                    if (check)
                     {
-                        ok = false;
-                        break;
+                        return check;
                     }
-                }
-                if (ok == false)
-                {
-                    return false;
                 }
             }
-            return true;
+            return check;
         }
-
         static void BT13()
         {
             int n;
@@ -325,7 +345,41 @@ namespace BaiTap
 
             }
         }
+        static bool TuanHoan(int[] a, int n)
+        {
+            for(int i = n / 2; i >= 1; i--)
+            {
+                if (n % i == 0)
+                {
+                    bool check = true;
+                    for (int j = i; j < n; j++)
+                    {
+                        if (a[j] != a[j - i])
+                        {
+                            check = false;
+                            break;
+                        }
+                    }
+                    if (check)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        static void BT14(int[] a, int n)
+        {
+            if (TuanHoan(a, n))
+            {
+                Console.Write("a la mang tuan hoan");
+            }
+            else
+            {
+                Console.Write("a khong la mang tuan hoan");
 
+            }
+        }
         static void XuatMang(int[] a, int n)
         {
             foreach (int i in a)
@@ -334,16 +388,15 @@ namespace BaiTap
             }
         }
 
-
         static void Main(string[] args)
         {
             int[] a;
             int n;
 
-            //NhapMang(out a, out n);
+            NhapMang(out a, out n);
 
-            //Chưa làm BT11() , Bt13();
-            BT13();
+            BT14(a,n);
+            
             //XuatMang(a, n);
         }
     }
