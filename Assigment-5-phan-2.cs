@@ -115,6 +115,18 @@ namespace BaiTap
                 }
             }
         }
+        static void BT_O_Lop_5()
+        {
+            int n, k;
+
+            Console.Write("Nhap so n : ");
+            n = int.Parse(Console.ReadLine());
+
+            Console.Write("Nhap so k : ");
+            k = int.Parse(Console.ReadLine());
+
+            
+        }
         static void XuatMang(int[] a, int n)
         {
             foreach (int i in a)
@@ -128,7 +140,8 @@ namespace BaiTap
 
             //NhapMang(out a, out n);
 
-            SangNguyenTo();
+            //SangNguyenTo();
+            BT_O_Lop_5();
 
             //XuatMang(a, n);
             
