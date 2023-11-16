@@ -1,6 +1,4 @@
-using Microsoft.SqlServer.Server;
 using System;
-using System.Linq;
 
 namespace BaiTap
 {
@@ -8,7 +6,9 @@ namespace BaiTap
     {
         static int[] a;
         static int[,] matrix;
-        static int n , col , row;
+        static int n;
+        static int col;
+        static int row;
 
         static void NhapMang(out int[] a, out int n)
         {
@@ -116,17 +116,17 @@ namespace BaiTap
                 }
             }
         }
-        static void InTapConBai5(int phanTu ,int n , int k, int[] result)
+        static void InTapConBai5(int phanTu, int n, int k, int[] result)
         {
             if (phanTu == k)
             {
                 XuatMang(result, k);
                 return;
             }
-            for(int i = 1; i <= n; i++)
+            for (int i = 1; i <= n; i++)
             {
                 result[phanTu] = i;
-                InTapConBai5(phanTu+1,n,k,result);
+                InTapConBai5(phanTu + 1, n, k, result);
             }
         }
         static void BT_O_Lop_5()
@@ -141,35 +141,35 @@ namespace BaiTap
 
             int[] result = new int[k];
 
-            InTapConBai5(0,n,k,result);
+            InTapConBai5(0, n, k, result);
         }
         static void XuatMang(int[] a, int n)
         {
-            for(int i = 0; i< n; i++)
+            for (int i = 0; i < n; i++)
             {
                 Console.Write($"{a[i]} ");
             }
             Console.WriteLine();
         }
 
-        static void NhapMaTran(ref int[,] matrix , ref int row , ref int col)
+        static void NhapMaTran(ref int[,] matrix, ref int row, ref int col)
         {
             Console.Write("Nhap vao so dong : ");
             row = int.Parse(Console.ReadLine());
             Console.Write("Nhap vao so cot : ");
             col = int.Parse(Console.ReadLine());
-            
-            matrix = new int[row,col];
+
+            matrix = new int[row, col];
             for (int i = 0; i < row; i++)
             {
-                for(int j = 0; j < col; j++)
+                for (int j = 0; j < col; j++)
                 {
                     Console.Write($"matrix[{i},{j}] = ");
-                    matrix[i,j] = int.Parse(Console.ReadLine());
+                    matrix[i, j] = int.Parse(Console.ReadLine());
                 }
             }
         }
-        static void XuatMaTran(int[,] matrix , int row , int col)
+        static void XuatMaTran(int[,] matrix, int row, int col)
         {
             for (int i = 0; i < row; i++)
             {
@@ -184,28 +184,28 @@ namespace BaiTap
         static void BT16()
         {
             NhapMaTran(ref matrix, ref row, ref col);
-            int max = matrix[0,0] , min = matrix[0,0];
+            int max = matrix[0, 0], min = matrix[0, 0];
             for (int i = 0; i < row; i++)
             {
                 for (int j = 0; j < col; j++)
                 {
-                    if (max < matrix[i,j])
-                        max = matrix[i,j];
-                    if (min > matrix[i,j])
-                        min = matrix[i,j];  
+                    if (max < matrix[i, j])
+                        max = matrix[i, j];
+                    if (min > matrix[i, j])
+                        min = matrix[i, j];
                 }
             }
             Console.WriteLine($"Gia tri lon nhat la : {max}");
             Console.WriteLine($"Gia tri nho nhat la : {min}");
 
         }
-        static bool DoiXung(int[,] matrix ,  int row , int col)
+        static bool DoiXung(int[,] matrix, int row, int col)
         {
             for (int i = 0; i < row; i++)
             {
                 for (int j = 0; j < col; j++)
                 {
-                    if (matrix[i,j] != matrix[j,i])
+                    if (matrix[i, j] != matrix[j, i])
                         return false;
                 }
             }
@@ -213,17 +213,139 @@ namespace BaiTap
         }
         static void BT17()
         {
-            NhapMaTran(ref matrix,ref row,ref col);
-            XuatMaTran(matrix,row,col);
+            NhapMaTran(ref matrix, ref row, ref col);
+            XuatMaTran(matrix, row, col);
             if (DoiXung(matrix, row, col))
             {
                 Console.WriteLine("Day la ma tran doi xung");
             }
             else { Console.WriteLine("Day la ma tran ko doi xung"); }
         }
+        static void BT19()
+        {
+            NhapMaTran(ref matrix, ref row, ref col);
+            Console.WriteLine("Ma tran chuyen vi la : ");
+
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    Console.Write($"{matrix[j, i]} ");
+                }
+                Console.WriteLine();
+            }
+        }
+        static void BT20()
+        {
+            NhapMaTran(ref matrix, ref row, ref col);
+            Console.WriteLine("Ma tran phan chieu la : ");
+
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = col - 1; j >= 0; j--)
+                {
+                    Console.Write($"{matrix[i, j]} ");
+                }
+                Console.WriteLine();
+            }
+        }
+        static void BT21()
+        {
+            int[,] A;
+            int[,] B;
+
+            Console.Write("Nhap vao so hang cua ma tran : ");
+            row = int.Parse(Console.ReadLine());
+            Console.Write("Nhap vao so cot hang cua ma tran : ");
+            col = int.Parse(Console.ReadLine());
+            A = new int[row,col];
+            for (int i = 0;i < row; i++)
+            {
+                for (int j = 0;j < col; j++)
+                {
+                    Console.Write($"A[{i},{j}] = ");
+                    A[i, j] = int.Parse(Console.ReadLine());
+                }
+                Console.WriteLine();
+            }
+
+            B = new int[row,col];
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    Console.Write($"B[{i},{j}] = ");
+                    B[i, j] = int.Parse(Console.ReadLine());
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("Ma tran C = A+B la : ");
+            int[,] C = new int[row,col];
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    C[i,j] = A[i,j] + B[i,j];
+                    Console.Write($"{C[i, j]} ");
+                }
+                Console.WriteLine();
+            }
+        }
+        static void BT22()
+        {
+            int rowA, colA, colB;
+            int[,] A;
+            int[,] B;
+
+            Console.Write("Nhap so hang cua A : ");
+            rowA = int.Parse(Console.ReadLine());
+            Console.Write("Nhap so cot cua A (la so hang B): ");
+            colA = int.Parse(Console.ReadLine());
+            A = new int[rowA, colA];
+            for (int i = 0; i < rowA; i++)
+            {
+                for (int j = 0; j < colA; j++)
+                {
+                    Console.Write($"A[{i},{j}] = ");
+                    A[i, j] = int.Parse(Console.ReadLine());
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("Nhap so cot cua B : ");
+            colB = int.Parse(Console.ReadLine());
+            B = new int[colA, colB];
+            for (int i = 0; i < colA; i++)
+            {
+                for (int j = 0; j < colB; j++)
+                {
+                    Console.Write($"B[{i},{j}] = ");
+                    B[i, j] = int.Parse(Console.ReadLine());
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("Ma tran A nhan B la : ");
+            int[,]C = new int[rowA,colB];
+            for (int i = 0;i < rowA; i++)
+            {
+                for(int j = 0;j < colB; j++)
+                {
+                    for (int k = 0; k <  colA; k++)
+                    {
+                        C[i, j] += A[i, k] * B[k, j];
+                    }
+                    Console.Write($"{C[i, j]} ");
+                }
+                Console.WriteLine();
+            }
+        }
         static void Main(string[] args)
         {
-            BT17();
+            BT22();
+
+            Console.ReadKey();
         }
     }
 }
